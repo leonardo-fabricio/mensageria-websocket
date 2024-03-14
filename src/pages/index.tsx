@@ -14,15 +14,41 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <PageContainer>oi</PageContainer>
+      <PageContainer>
+        <PageContent>
+          <ListMessages>oi</ListMessages>
+          <SendMessage>oi</SendMessage>
+        </PageContent>
+      </PageContainer>
     </>
   );
 }
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background: ${({ theme }) => theme.green900};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const PageContent = styled.div`
+  width: 1344px;
+  height: 926px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+const ListMessages = styled.div`
+  background: ${({ theme }) => theme.white100};
+  border-radius: 25px;
+  width: 100%;
+  height: 100%;
+`;
+const SendMessage = styled.div`
+  width: 100%;
+  height: 50px;
+  background: ${({ theme }) => theme.white100};
+  border-radius: 50px;
 `;
