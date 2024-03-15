@@ -32,7 +32,7 @@ const ListMessages = styled.div`
   background: ${({ theme }) => theme.white100};
 
   @media (max-width: 1200px) {
-    height: calc(100% - 128px);
+    height: calc(100% - 98px);
   }
 `;
 

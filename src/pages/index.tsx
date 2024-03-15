@@ -53,6 +53,7 @@ const PageContainer = styled.div`
   @media (max-width: 1200px) {
     padding: 24px 24px 0 24px;
     width: calc(100vw - 48px);
+    max-height: calc(100vh - 24px);
   }
 `;
 

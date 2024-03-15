@@ -54,7 +54,4 @@ const SendMessage = styled.div`
   border-radius: 50px;
   display: flex;
   gap: 24px;
-
-  @media (max-width: 1200px) {
-  }
 `;
