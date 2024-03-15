@@ -40,4 +40,5 @@ const MessagesContainer = styled.div`
   width: calc(100% - 48px);
   max-height: 684px;
   overflow: auto;
+  scrollbar-width: none;
 `;

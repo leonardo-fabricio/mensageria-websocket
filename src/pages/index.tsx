@@ -57,4 +57,8 @@ const PageContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 1200px) {
+    width: 400px;
+  }
 `;
