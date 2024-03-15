@@ -49,6 +49,11 @@ const PageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1200px) {
+    padding: 24px 24px 0 24px;
+    width: calc(100vw - 48px);
+  }
 `;
 
 const PageContent = styled.div`
@@ -59,6 +64,7 @@ const PageContent = styled.div`
   gap: 24px;
 
   @media (max-width: 1200px) {
-    width: 400px;
+    width: 100%;
+    height: 100%;
   }
 `;

@@ -56,10 +56,5 @@ const SendMessage = styled.div`
   gap: 24px;
 
   @media (max-width: 1200px) {
-    position: fixed;
-    z-index: 1;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
   }
 `;

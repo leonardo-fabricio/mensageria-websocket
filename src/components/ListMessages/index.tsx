@@ -30,6 +30,10 @@ const ListMessages = styled.div`
   width: 100%;
   height: 852px;
   background: ${({ theme }) => theme.white100};
+
+  @media (max-width: 1200px) {
+    height: calc(100% - 128px);
+  }
 `;
 
 const MessagesContainer = styled.div`
@@ -41,4 +45,10 @@ const MessagesContainer = styled.div`
   max-height: 684px;
   overflow: auto;
   scrollbar-width: none;
+
+  @media (max-width: 1200px) {
+    padding: 12px;
+    max-height: calc(100% - 86px);
+    width: calc(100% - 24px);
+  }
 `;

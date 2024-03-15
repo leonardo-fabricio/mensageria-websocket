@@ -21,6 +21,9 @@ const Header = styled.div`
   border-radius: 25px 25px 0 0;
   padding: 0 24px;
   gap: 24px;
+  @media (max-width: 1200px) {
+    height: 50px;
+  }
 `;
 
 const ImageUser = styled.div`
@@ -30,6 +33,11 @@ const ImageUser = styled.div`
   width: 40px;
   border: 1px solid black;
   border-radius: 50%;
+
+  @media (max-width: 1200px) {
+    height: 25px;
+    width: 25px;
+  }
 
   &::before {
     content: "";
@@ -46,4 +54,7 @@ const NameUser = styled.span`
   color: ${({ theme }) => theme.white};
   font-size: 16px;
   font-family: "Inter", sans-serif;
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
 `;
