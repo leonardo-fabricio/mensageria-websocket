@@ -1,6 +1,7 @@
 import { UserContext } from "@/contexts/User";
 import { MessageInterface } from "@/interface/message";
 import { useContext, useEffect, useState } from "react";
+import { uuid } from "uuidv4";
 
 export default function useSocket() {
   const { setUser } = useContext(UserContext);
@@ -19,7 +20,7 @@ export default function useSocket() {
       setUser(data);
       user = data;
     } else {
-      const idUser = crypto.randomUUID();
+      const idUser = uuid();
       setUser(idUser);
       user = idUser;
       window.localStorage.setItem("user", idUser);
