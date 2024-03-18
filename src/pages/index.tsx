@@ -4,12 +4,13 @@ import UserProvider, { UserContext } from "@/contexts/User";
 import useSocket from "@/hooks/useSocket";
 import { MessageInterface } from "@/interface/message";
 import Head from "next/head";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 export default function Home() {
   const listRef = useRef<HTMLDivElement>(null);
   const { messages, setMessages } = useSocket();
+
   return (
     <>
       <Head>

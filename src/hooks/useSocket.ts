@@ -3,23 +3,35 @@ import { MessageInterface } from "@/interface/message";
 import { useContext, useEffect, useState } from "react";
 
 export default function useSocket() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [messages, setMessages] = useState<MessageInterface[]>([]);
+  const [socket, setSocket] = useState<WebSocket>();
 
   function handleMessages(data: MessageInterface) {
     setMessages((prev) => [...prev, data]);
+    socket?.send(data.text);
   }
 
   useEffect(() => {
-    const idUser = crypto.randomUUID();
-    setUser(idUser);
-    const socket = new WebSocket(`ws://localhost:8080/?id=${idUser}`);
-    socket.addEventListener("open", () => {
+    const data = window.localStorage.getItem("user");
+    let user = "";
+    if (data) {
+      setUser(data);
+      user = data;
+    } else {
+      const idUser = crypto.randomUUID();
+      setUser(idUser);
+      user = idUser;
+      window.localStorage.setItem("user", idUser);
+    }
+    const s = new WebSocket(`ws://localhost:8080/?id=${user}`);
+    setSocket(s);
+
+    s.addEventListener("open", () => {
       console.log("open conection");
     });
-    socket.addEventListener("message", (msg) => {
-      const { messages: MessagesServer } = JSON.parse(msg.data);
-
+    s.addEventListener("message", (msg) => {
+      const MessagesServer = JSON.parse(msg.data);
       if (messages.length != MessagesServer.length) setMessages(MessagesServer);
     });
   }, []);
