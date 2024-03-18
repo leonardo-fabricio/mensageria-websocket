@@ -18,7 +18,9 @@ export default function useSocket() {
       console.log("open conection");
     });
     socket.addEventListener("message", (msg) => {
-      const { messages } = JSON.parse(msg.data);
+      const { messages: MessagesServer } = JSON.parse(msg.data);
+
+      if (messages.length != MessagesServer.length) setMessages(MessagesServer);
     });
   }, []);
 
