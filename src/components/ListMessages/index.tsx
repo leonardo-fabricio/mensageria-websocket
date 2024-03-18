@@ -2,17 +2,33 @@ import styled from "styled-components";
 import { HeaderComponent } from "../Header";
 import { MessageInterface } from "@/interface/message";
 import { MessageComponent } from "../Message";
-import { RefObject } from "react";
+import { RefObject, SetStateAction, useContext, useEffect } from "react";
+import { UserContext } from "@/contexts/User";
 
 interface ListMessagesComponentProps {
   messageList: MessageInterface[];
+  setMessageList: (state: MessageInterface) => void;
   listRef: RefObject<HTMLDivElement>;
 }
 
 export function ListMessagesComponent({
   messageList,
   listRef,
+  setMessageList,
 }: ListMessagesComponentProps) {
+  const { setUser } = useContext(UserContext);
+  useEffect(() => {
+    const idUser = crypto.randomUUID();
+    setUser(idUser);
+    const socket = new WebSocket(`ws://localhost:8080/?id=${idUser}`);
+    socket.addEventListener("open", () => {
+      console.log("open conection");
+    });
+    socket.addEventListener("message", (msg) => {
+      const { messages } = JSON.parse(msg.data);
+      if (messageList.length != messages.length) setMessageList(messages);
+    });
+  }, []);
   return (
     <ListMessages>
       <HeaderComponent />

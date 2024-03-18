@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { InputComponent } from "../Input";
 import Image from "next/image";
 import { ButtonComponent } from "../Button";
-import { RefObject, SetStateAction, useState } from "react";
+import { RefObject, SetStateAction, useContext, useState } from "react";
 import { MessageInterface } from "@/interface/message";
+import { UserContext } from "@/contexts/User";
 
 interface SendMessagesComponentProps {
-  setMessageList: (state: SetStateAction<MessageInterface[]>) => void;
+  setMessageList: (state: MessageInterface) => void;
   listRef: RefObject<HTMLDivElement>;
 }
 
@@ -15,12 +16,10 @@ export function SendMessagesComponent({
   listRef,
 }: SendMessagesComponentProps) {
   const [value, setValue] = useState("");
+  const { user } = useContext(UserContext);
 
   function handleSubmit() {
-    setMessageList((prev) => [
-      ...prev,
-      { text: value, user: "eu", date: new Date() },
-    ]);
+    setMessageList({ text: value, user: user, date: new Date() });
 
     listRef.current?.scrollTo({
       top: listRef.current.scrollHeight,

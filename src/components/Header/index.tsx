@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { useContext } from "react";
+import { UserContext } from "@/contexts/User";
 
 export function HeaderComponent() {
+  const { user } = useContext(UserContext);
+
   return (
     <Header>
       <ImageUser>
         <Image src={"/default-avatar.png"} layout="fill" alt="image user" />
       </ImageUser>
-      <NameUser>FULANO DE TAL</NameUser>
+      <NameUser>
+        <strong>user:</strong> {user}
+      </NameUser>
     </Header>
   );
 }

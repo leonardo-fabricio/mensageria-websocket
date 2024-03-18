@@ -1,4 +1,6 @@
+import { UserContext } from "@/contexts/User";
 import { MessageInterface } from "@/interface/message";
+import { use, useContext } from "react";
 import styled from "styled-components";
 
 interface MessageComponentProps {
@@ -6,7 +8,8 @@ interface MessageComponentProps {
 }
 
 export function MessageComponent({ message }: MessageComponentProps) {
-  return <Message sentByMe={message.user == "eu"}>{message.text}</Message>;
+  const { user } = useContext(UserContext);
+  return <Message sentByMe={message.user == user}>{message.text}</Message>;
 }
 
 const Message = styled.div<{ sentByMe: boolean }>`

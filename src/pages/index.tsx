@@ -1,26 +1,15 @@
 import { ListMessagesComponent } from "@/components/ListMessages";
 import { SendMessagesComponent } from "@/components/SendMessages";
+import UserProvider, { UserContext } from "@/contexts/User";
+import useSocket from "@/hooks/useSocket";
 import { MessageInterface } from "@/interface/message";
 import Head from "next/head";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import styled from "styled-components";
-
-const ArrayTest: MessageInterface[] = [
-  {
-    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    user: "other",
-    date: new Date(),
-  },
-  {
-    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    user: "eu",
-    date: new Date(),
-  },
-];
 
 export default function Home() {
   const listRef = useRef<HTMLDivElement>(null);
-  const [messageList, setMessageList] = useState<MessageInterface[]>(ArrayTest);
+  const { messages, setMessages } = useSocket();
   return (
     <>
       <Head>
@@ -31,10 +20,14 @@ export default function Home() {
       </Head>
       <PageContainer>
         <PageContent>
-          <ListMessagesComponent listRef={listRef} messageList={messageList} />
+          <ListMessagesComponent
+            listRef={listRef}
+            messageList={messages}
+            setMessageList={setMessages}
+          />
           <SendMessagesComponent
             listRef={listRef}
-            setMessageList={setMessageList}
+            setMessageList={setMessages}
           />
         </PageContent>
       </PageContainer>
