@@ -25,6 +25,7 @@ export function SendMessagesComponent({
       top: listRef.current.scrollHeight,
       behavior: "smooth",
     });
+    setValue("");
   }
   return (
     <SendMessage>
