@@ -9,7 +9,17 @@ interface MessageComponentProps {
 
 export function MessageComponent({ message }: MessageComponentProps) {
   const { user } = useContext(UserContext);
-  return <Message sentByMe={message.user == user}>{message.text}</Message>;
+  return (
+    <Message sentByMe={message.user == user}>
+      <div>
+        <strong>user:</strong>
+        {message.user}
+      </div>
+      <strong>
+        {"<"} {message.text} {">"}
+      </strong>
+    </Message>
+  );
 }
 
 const Message = styled.div<{ sentByMe: boolean }>`
@@ -26,4 +36,5 @@ const Message = styled.div<{ sentByMe: boolean }>`
   align-self: ${({ sentByMe }) => (sentByMe ? "flex-end" : "flex-start")};
   font-size: 14px;
   font-family: "Inter", sans-serif;
+  flex-direction: column;
 `;
