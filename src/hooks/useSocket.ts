@@ -25,7 +25,7 @@ export default function useSocket() {
       user = idUser;
       window.localStorage.setItem("user", idUser);
     }
-    const s = new WebSocket(`ws://localhost:8080/?id=${user}`);
+    const s = new WebSocket(`ws://34.125.37.49:8080/?id=${user}`);
     setSocket(s);
 
     s.addEventListener("open", () => {
