@@ -9,6 +9,7 @@ interface MessageComponentProps {
 
 export function MessageComponent({ message }: MessageComponentProps) {
   const { user } = useContext(UserContext);
+  const date = new Date(message.date).toLocaleString();
   return (
     <Message sentByMe={message.user == user}>
       <div>
@@ -18,13 +19,15 @@ export function MessageComponent({ message }: MessageComponentProps) {
       <strong>
         {"<"} {message.text} {">"}
       </strong>
+      <div>{date}</div>
     </Message>
   );
 }
 
 const Message = styled.div<{ sentByMe: boolean }>`
   display: flex;
-  align-items: center;
+  align-items: end;
+  gap: 8px;
   border-radius: 8px;
   width: max-content;
   max-width: 45%;
